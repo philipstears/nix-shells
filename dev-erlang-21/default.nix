@@ -14,6 +14,10 @@ let
         (import stearsPackages)
       ];
     };
+
+  nixUnstablePackages =
+    import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+
 in
 
 with nixPackages;
@@ -23,6 +27,7 @@ stdenv.mkDerivation {
   buildInputs = [
     pkgs.devPackages.erlang-21-2-4.erlang
     pkgs.devPackages.erlang-21-2-4.rebar3-9
+    nixUnstablePackages.terraform_0_11-full
   ];
 }
 
